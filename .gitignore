@@ -13,4 +13,5 @@ _deps
 
 *.o
 *.out
+*.swp
 build/

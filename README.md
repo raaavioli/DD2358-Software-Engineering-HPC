@@ -1,4 +1,4 @@
-#Instructions
+# Instructions
 
 - Clone repository and include submodules
 > git clone --recurse-submodules git@github.com:raaavioli/DD2358-Software-Engineering-HPC.git
@@ -10,7 +10,7 @@ matrix.h is found under *include/*
 Build system assumes you have an implementation of BLAS installed on your system, which you need to provide information about to cmake.
 #### cmake arguments
 * BLAS_LIB: path to BLAS library implementation file, such as libopenblas.a
-* CBLAS_H: path to directory where cblas.h and its required includes are located
+* CBLAS_H: path to directory where cblas.h and its required includes (i.e openblas_config.h for openblas)
 
 ### Build
 > mkdir build

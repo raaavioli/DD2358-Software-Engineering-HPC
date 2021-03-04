@@ -26,7 +26,7 @@ else()
 endif()
 target_include_directories(blas_test PRIVATE ${CBLAS_H})
 target_link_libraries(blas_test
-  ${BLAS_LIB}/libopenblas.a gtest gtest_main)
+  ${BLAS_LIB} gtest gtest_main)
 
 set_target_properties(matrix matrix_test blas_test
   PROPERTIES

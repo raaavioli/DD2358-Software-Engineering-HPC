@@ -11,7 +11,7 @@ matrix.h is found under *include/*
 >
 > cd build
 >
-> cmake .. -DBUILD_GMOCK=OFF
+> cmake *<path_to_CMakeLists.txt>* -DBUILD_GMOCK=OFF
 >
 > make
 

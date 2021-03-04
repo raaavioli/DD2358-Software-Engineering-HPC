@@ -8,11 +8,14 @@ Source files are located in *Exercise-2/*
 matrix.h is found under *include/*
 ### Build
 > mkdir build
+>
 > cd build
+>
 > cmake .. -DBUILD_GMOCK=OFF
+>
 > make
 
-*matrix_test* binary is located in *bin/*
+*matrix_test* executable is located in *bin/*, run:
 > ./bin/matrix_test
 
 

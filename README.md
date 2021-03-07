@@ -23,6 +23,7 @@ Build system assumes you have an implementation of BLAS installed on your system
 > > Example:
 > >
 > > \> cmake .. -DBUILD_GMOCK=OFF -DCBLAS_H=/usr/include/OpenBLAS/ \ 
+> >
 > > \>          -DBLAS_LIB=/usr/lib/OpenBLAS/libopenblas.a
 >
 > \> make

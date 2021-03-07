@@ -28,11 +28,16 @@ Build system assumes you have an implementation of BLAS installed on your system
 >
 > \> make
 
+## Exercise 3 test suites
 *matrix_test* executable is located in *bin/*, run:
 > \> ./bin/matrix_test
 
+*matrix_test* tests the naive implementation of gemm.
+
 *blas_test* executable is located in *bin/*, run:
 > \> ./bin/blas_test
+
+*blas_test* tests the BLAS implementation of gemm.
 
 ### Exercise 3 experiments
 Executables to perform benchmark tests are compiled with the cmake script and located in */bin*
@@ -41,6 +46,7 @@ Benchmarks are named *benchmark_[naive|blas]*.
 
 ##### Usage
 > \> ./benchmark_\<name\> \<max dimension\> \<increments\>
+
 where *\<max dimension\>* determines the largest dimension of matrices benchmarked 
 and *\<increments\>* determines the starting dimension of the matrices and the size of
 the increments until *\<max dimension\>* is reached.

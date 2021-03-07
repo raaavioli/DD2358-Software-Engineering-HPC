@@ -21,7 +21,9 @@ Build system assumes you have an implementation of BLAS installed on your system
 > \> cmake *<path_to_CMakeLists.txt>* -DBUILD_GMOCK=OFF -DCBLAS_H=<path-to-cblas.h> -DBLAS_LIB=<path-to-blas/lib___.a>
 >
 > > Example:
-> > \> cmake .. -DBUILD_GMOCK=OFF -DCBLAS_H=/usr/include/OpenBLAS/ -DBLAS_LIB=/usr/lib/OpenBLAS/libopenblas.a
+> >
+> > \> cmake .. -DBUILD_GMOCK=OFF -DCBLAS_H=/usr/include/OpenBLAS/ \ 
+> > \>          -DBLAS_LIB=/usr/lib/OpenBLAS/libopenblas.a
 >
 > \> make
 

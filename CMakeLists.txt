@@ -44,7 +44,7 @@ target_link_libraries(matrix_test
   matrix gtest gtest_main)
 
 # Gtest suite with blas gemm
-add_executable(blas_test ${CMAKE_SOURCE_DIR}/Exercise-3/blas_test.cpp)
+add_executable(blas_test ${CMAKE_SOURCE_DIR}/Exercise-2/matrix_test.cpp)
 target_link_libraries(blas_test
   blas_matrix gtest gtest_main)
 

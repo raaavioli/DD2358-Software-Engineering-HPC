@@ -28,7 +28,7 @@ Build system assumes you have an implementation of BLAS installed on your system
 >
 > \> make
 
-## Exercise 3 test suites
+### Exercise 3 test suites
 *matrix_test* executable is located in *bin/*, run:
 > \> ./bin/matrix_test
 
@@ -64,3 +64,17 @@ To plot your benchmarks, example *gnuplot* scripts are found under /data from th
 > \> gnuplot execution_time.gp
 
 Currently, the gnuplot scripts require the names *benchmark_naive.dat* and *benchmark_blas.dat*. To plot files with different names, change the names in the scripts under the *plot* command.
+
+## Exercise 4 - Docker
+Dockerfile is found in directory *Exercise-4/*.
+
+Building the docker container requires you to have Docker installed and the daemon running.
+
+> \> cd Exercise-4
+> \> sudo docker build -t exercise4:latest .
+
+Building the image may take several minutes due to installation of OpenBLAS
+
+> \> sudo docker run --rm exercise4:latest
+
+

@@ -1,6 +1,5 @@
-#include <gtest/gtest.h>
-
 #include <stddef.h>
+#include <gtest/gtest.h>
 
 extern "C" 
 {

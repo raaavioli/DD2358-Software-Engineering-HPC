@@ -40,10 +40,10 @@ Executables to perform benchmark tests are compiled with the cmake script and lo
 Benchmarks are named *benchmark_[naive|blas]*.
 
 ##### Usage
-> \> ./benchmark_<name> <max dimension> <increments>
-where *<max dimension>* determines the largest dimension of matrices benchmarked 
-and *<increments>* determines the starting dimension of the matrices and the size of
-the increments until *<max dimension>* is reached.
+> \> ./benchmark_\<name\> \<max dimension\> \<increments\>
+where *\<max dimension\>* determines the largest dimension of matrices benchmarked 
+and *\<increments\>* determines the starting dimension of the matrices and the size of
+the increments until *\<max dimension\>* is reached.
 
 Example:
 > \> ./bin/benchmark_naive 1000 10 > benchmark_naive.dat

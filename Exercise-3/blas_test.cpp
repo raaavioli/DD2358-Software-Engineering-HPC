@@ -1,19 +1,9 @@
 #include <stddef.h>
 
 #include <gtest/gtest.h>
-#include <cblas.h>
 
-void gemm(size_t dim, double* c, double* a, double* b)
-{
-  const double alpha = 1.0;
-  const double beta = 0.0;
-  const int lda = dim;
-  const int ldb = dim;
-  const int ldc = dim;
-
-  cblas_dgemm(CblasRowMajor, CblasNoTrans, CblasNoTrans,
-    dim, dim, dim, alpha, a, lda,
-    b, ldb, beta, c, ldc);
+extern "C" {
+  #include "matrix.h"
 }
 
 void compare_matrices(size_t size, double* expected, double* actual)

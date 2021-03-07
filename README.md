@@ -71,9 +71,11 @@ Dockerfile is found in directory *Exercise-4/*.
 Building the docker container requires you to have Docker installed and the daemon running.
 
 > \> cd Exercise-4
+>
 > \> sudo docker build -t exercise4:latest .
 
 Building the image may take several minutes due to installation of OpenBLAS
 
+After build is finished, simply run the container
 > \> sudo docker run --rm exercise4:latest
 

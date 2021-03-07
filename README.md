@@ -77,4 +77,3 @@ Building the image may take several minutes due to installation of OpenBLAS
 
 > \> sudo docker run --rm exercise4:latest
 
-

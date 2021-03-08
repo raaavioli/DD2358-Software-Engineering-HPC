@@ -68,7 +68,7 @@ Currently, the gnuplot scripts require the names *benchmark_naive.dat* and *benc
 Dockerfile is found in directory *Exercise-4/*.
 
 ### Acquire tarball
-Create the tarball needed to run the docker container
+Create the tarball *exercise2-3.tar.gz* needed to run the docker container
 > \> cd Exercise-4 && ./tarball.sh
 
 ### Build image

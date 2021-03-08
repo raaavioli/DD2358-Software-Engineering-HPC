@@ -68,6 +68,11 @@ Currently, the gnuplot scripts require the names *benchmark_naive.dat* and *benc
 ## Exercise 4 - Docker
 Dockerfile is found in directory *Exercise-4/*.
 
+### Acquire tarball
+Create the tarball needed to run the docker container
+> \> cd Exercise-4 && ./tarball.sh
+
+### Build image
 Building the docker container requires you to have Docker installed and the daemon running.
 
 > \> cd Exercise-4
@@ -76,6 +81,21 @@ Building the docker container requires you to have Docker installed and the daem
 
 Building the image may take several minutes due to installation of OpenBLAS
 
-After build is finished, simply run the container
+### Run programs in container
+After build is finished, simply run the appropriate benchmark inside the container
+
+#### Default
+Run gemm test on naive matrix implementation by default
 > \> sudo docker run --rm exercise4:latest
+
+#### Specify specific program
+Run a specific program inside the container
+> \> sudo docker run --rm exercise4:latest \<program\>
+
+where \<program\> is one of: 
+* ./matrix_test
+* ./blas_test
+* ./benchmark_blas \<max dimension\> \<increments\>
+* ./benchmark_naive \<max dimension\> \<increments\>
+
 

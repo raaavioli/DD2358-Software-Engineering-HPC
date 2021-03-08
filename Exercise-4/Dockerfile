@@ -18,5 +18,6 @@ RUN cmake .. -DBUILD_GMOCK=OFF -DCBLAS_H=/build/OpenBLAS-0.3.13 \
 	-DBLAS_LIB=/build/OpenBLAS-0.3.13/libopenblas.a && \
 	make
 
-WORKDIR /
-ENTRYPOINT ["/build/bin/blas_test"]
+WORKDIR /build/bin
+CMD ./matrix_test
+

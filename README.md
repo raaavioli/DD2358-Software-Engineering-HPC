@@ -6,7 +6,7 @@
 ## Exercise 2 & 3
 Source files are located in *Exercise-2/* respectively *Exercise-3/*. matrix.h is found under *include/*
 
-The build system assumes you have an implementation of BLAS installed on your system, which you need to provide information about to cmake. For example, install and compile [OpenBLAS](http://www.openblas.net/), and make sure to put *cblas.h* and any dependent headers in the same directory.
+The build system assumes you have an implementation of BLAS installed on your system, which you need to provide information about to cmake. For example, install and compile [OpenBLAS](http://www.openblas.net/), and make sure to put *cblas.h* and *openblas_config.h* in the same directory.
 
 #### cmake arguments
 * **BLAS_LIB**: path to a BLAS library implementation file, such as libopenblas.a (including file name)

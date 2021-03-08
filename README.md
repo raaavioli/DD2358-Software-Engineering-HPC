@@ -4,13 +4,12 @@
 > git clone --recurse-submodules git@github.com:raaavioli/DD2358-Software-Engineering-HPC.git
 
 ## Exercise 2 & 3
-Source files are located in *Exercise-2/* respectively *Exercise-3/*
-matrix.h is found under *include/*
+Source files are located in *Exercise-2/* respectively *Exercise-3/*. matrix.h is found under *include/*
 
 Build system assumes you have an implementation of BLAS installed on your system, which you need to provide information about to cmake.
 #### cmake arguments
-* **BLAS_LIB**: path to a BLAS library implementation file, such as libopenblas.a
-* **CBLAS_H**: path to directory where cblas.h and its required includes (i.e openblas_config.h for openblas)
+* **BLAS_LIB**: path to a BLAS library implementation file, such as libopenblas.a (including file name)
+* **CBLAS_H**: path to directory containing cblas.h and its required includes (i.e openblas_config.h for openblas)
 * **BUILD_GMOCK**: turn gmock build *OFF*, as it is not used.
 
 ### Build instruction

@@ -11,8 +11,8 @@ The build system assumes you have an implementation of BLAS installed on your sy
 #### cmake arguments
 * **BLAS_LIB** (required): path to a BLAS library implementation file, such as libopenblas.a (including file name)
 * **CBLAS_H** (required): path to directory containing cblas.h and its required includes (i.e openblas_config.h for openblas)
-* **LIBXSMM_ENABLED**: Compile and link binaries for libxsmm, **required for bonus assignment**
-* **BUILD_GMOCK**: turn gmock build *OFF*, as it is not used.
+* **LIBXSMM_ENABLED**: set to *TRUE* to compile and link binaries for libxsmm, **required for bonus assignment**
+* **BUILD_GMOCK**: set to *OFF* to avoid unnecessary build, as it is not used.
 
 ### Build instruction
 Following will build LIBXSMM and link all necessary libraries and produce binaries for all following execises, including bonus. Thus, **this step may take a few minutes**.

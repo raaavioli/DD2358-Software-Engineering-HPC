@@ -81,7 +81,7 @@ Building the docker container requires you to have Docker installed and the daem
 >
 > \> sudo docker build -t exercise4:latest .
 
-Building the image may take several minutes due to installation of OpenBLAS
+Building the image **may take several minutes** due to installation of OpenBLAS
 
 ### Run programs in container
 After build is finished, simply run the appropriate benchmark inside the container

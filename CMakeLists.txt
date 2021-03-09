@@ -34,19 +34,35 @@ endif()
 target_include_directories(blas_matrix PUBLIC ${CBLAS_H})
 target_link_libraries(blas_matrix ${BLAS_LIB} ${THREAD})
 
-# libxsmm impl of gemm
-add_custom_target(libxsmm_make
-	COMMAND make STATIC=0
-	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/Exercise-Bonus/libxsmm)
+if (LIBXSMM_ENABLED MATCHES "TRUE")
+	# libxsmm impl of gemm
+	add_custom_target(libxsmm_make
+		COMMAND make STATIC=0
+		WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/Exercise-Bonus/libxsmm)
 
-add_library(xsmm_matrix ${CMAKE_SOURCE_DIR}/Exercise-Bonus/libxsmm_matrix.c)
-add_dependencies(xsmm_matrix libxsmm_make)
-target_include_directories(xsmm_matrix PUBLIC ${CBLAS_H} ${CMAKE_SOURCE_DIR}/Exercise-Bonus/libxsmm/include)
-target_link_libraries(xsmm_matrix 
-	${CMAKE_SOURCE_DIR}/Exercise-Bonus/libxsmm/lib/libxsmm.so
-	${BLAS_LIB}
-	${THREAD})
+	add_library(xsmm_matrix ${CMAKE_SOURCE_DIR}/Exercise-Bonus/libxsmm_matrix.c)
+	add_dependencies(xsmm_matrix libxsmm_make)
+	target_include_directories(xsmm_matrix PUBLIC ${CBLAS_H} ${CMAKE_SOURCE_DIR}/Exercise-Bonus/libxsmm/include)
+	target_link_libraries(xsmm_matrix 
+		${CMAKE_SOURCE_DIR}/Exercise-Bonus/libxsmm/lib/libxsmm.so
+		${BLAS_LIB}
+	
+	# Gtest suite with libxsmm gemm
+	add_executable(xsmm_test ${CMAKE_SOURCE_DIR}/Exercise-2/matrix_test.cpp)
+	target_link_libraries(xsmm_test
+		xsmm_matrix gtest gtest_main)	${THREAD})
 
+	# Benchmark of libxsmm
+	add_executable(benchmark_xsmm ${CMAKE_SOURCE_DIR}/Exercise-3/benchmark.c)
+	target_link_libraries(benchmark_xsmm ${MATH} xsmm_matrix)
+
+	set_target_properties(
+		xsmm_matrix xsmm_test benchmark_xsmm
+	  PROPERTIES
+	  ARCHIVE_OUTPUT_DIRECTORY "lib/"
+	  LIBRARY_OUTPUT_DIRECTORY "lib/"
+	  RUNTIME_OUTPUT_DIRECTORY "bin/")
+endif()
 
 #EXECUTABLES
 
@@ -55,32 +71,23 @@ add_executable(matrix_test ${CMAKE_SOURCE_DIR}/Exercise-2/matrix_test.cpp)
 target_link_libraries(matrix_test
   matrix gtest gtest_main)
 
+# Benchmark of naive gemm
+add_executable(benchmark_naive ${CMAKE_SOURCE_DIR}/Exercise-3/benchmark.c)
+target_link_libraries(benchmark_naive ${MATH} matrix)
+
 # Gtest suite with blas gemm
 add_executable(blas_test ${CMAKE_SOURCE_DIR}/Exercise-2/matrix_test.cpp)
 target_link_libraries(blas_test
   blas_matrix gtest gtest_main)
 
-# Gtest suite with libxsmm gemm
-add_executable(xsmm_test ${CMAKE_SOURCE_DIR}/Exercise-2/matrix_test.cpp)
-target_link_libraries(xsmm_test
-	xsmm_matrix gtest gtest_main)
-
-# Benchmark of naive gemm
-add_executable(benchmark_naive ${CMAKE_SOURCE_DIR}/Exercise-3/benchmark.c)
-target_link_libraries(benchmark_naive ${MATH} matrix)
-
 # Benchmark of blas gemm
 add_executable(benchmark_blas ${CMAKE_SOURCE_DIR}/Exercise-3/benchmark.c)
 target_link_libraries(benchmark_blas ${MATH} blas_matrix)
 
-# Benchmark of libxsmm
-add_executable(benchmark_xsmm ${CMAKE_SOURCE_DIR}/Exercise-3/benchmark.c)
-target_link_libraries(benchmark_xsmm ${MATH} xsmm_matrix)
-
 set_target_properties(
-	matrix blas_matrix xsmm_matrix 
-	matrix_test blas_test xsmm_test 
-	benchmark_naive benchmark_blas benchmark_xsmm
+	matrix blas_matrix 
+	matrix_test blas_test 
+	benchmark_naive benchmark_blas
   PROPERTIES
   ARCHIVE_OUTPUT_DIRECTORY "lib/"
   LIBRARY_OUTPUT_DIRECTORY "lib/"

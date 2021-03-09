@@ -46,11 +46,12 @@ if (LIBXSMM_ENABLED MATCHES "TRUE")
 	target_link_libraries(xsmm_matrix 
 		${CMAKE_SOURCE_DIR}/Exercise-Bonus/libxsmm/lib/libxsmm.so
 		${BLAS_LIB}
+		${THREAD})
 	
 	# Gtest suite with libxsmm gemm
 	add_executable(xsmm_test ${CMAKE_SOURCE_DIR}/Exercise-2/matrix_test.cpp)
 	target_link_libraries(xsmm_test
-		xsmm_matrix gtest gtest_main)	${THREAD})
+		xsmm_matrix gtest gtest_main)
 
 	# Benchmark of libxsmm
 	add_executable(benchmark_xsmm ${CMAKE_SOURCE_DIR}/Exercise-3/benchmark.c)

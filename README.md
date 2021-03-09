@@ -14,6 +14,8 @@ The build system assumes you have an implementation of BLAS installed on your sy
 * **BUILD_GMOCK**: turn gmock build *OFF*, as it is not used.
 
 ### Build instruction
+Following will build LIBXSMM and link all necessary libraries and produce binaries for all following execises, including bonus. Thus, **this step may take a few minutes**.
+
 > \> mkdir build
 >
 > \> cd build
@@ -98,4 +100,17 @@ where \<program\> is one of:
 * ./benchmark_blas \<max dimension\> \<increments\>
 * ./benchmark_naive \<max dimension\> \<increments\>
 
+## Exercise Bonus - LIBXSMM
+Bonus exercise source file are located in *Exercise-Bonus/*.
+
+If cmake build done to compile exercise 2 and 3 was properly executed, LIBXSMM should already be built and compiled.
+See libxsmm_matrix.c for implementation of gemm in libxsmm.
+
+As with exercise 3 and 2, the *xsmm_test*, which is the google test using libxsmm, and the libxsmm benchmark *benchmark_xsmm* are located inside *bin* as with the binaries in exercise 2 and 3. The binaries are executed as those in exercise 2 and 3.
+
+> \> ./xsmm_test
+or
+> \> ./benchmark_xsmm 1000 10 > output_file.dat
+
+Gnuplot script *xsmm_flops.gp* for plotting benchmarks is located in *data/* from the repository's root directory. To run the script, make sure to name your data-files properly to benchmark\_[naive|blas|xsmm]\_small.dat or change the naming configuration in *xsmm_flops.gp*.
 

@@ -32,8 +32,20 @@ else()
   message("cblas.h and blas library paths specified: " ${CBLAS_H} ", " ${BLAS_LIB} )
 endif()
 target_include_directories(blas_matrix PUBLIC ${CBLAS_H})
-target_link_libraries(blas_matrix ${BLAS_LIB})
-target_link_libraries(blas_matrix ${THREAD})
+target_link_libraries(blas_matrix ${BLAS_LIB} ${THREAD})
+
+# libxsmm impl of gemm
+add_custom_target(libxsmm_make
+	COMMAND make STATIC=0
+	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/Exercise-Bonus/libxsmm)
+
+add_library(xsmm_matrix ${CMAKE_SOURCE_DIR}/Exercise-Bonus/libxsmm_matrix.c)
+add_dependencies(xsmm_matrix libxsmm_make)
+target_include_directories(xsmm_matrix PUBLIC ${CBLAS_H} ${CMAKE_SOURCE_DIR}/Exercise-Bonus/libxsmm/include)
+target_link_libraries(xsmm_matrix 
+	${CMAKE_SOURCE_DIR}/Exercise-Bonus/libxsmm/lib/libxsmm.so
+	${BLAS_LIB}
+	${THREAD})
 
 
 #EXECUTABLES
@@ -48,18 +60,27 @@ add_executable(blas_test ${CMAKE_SOURCE_DIR}/Exercise-2/matrix_test.cpp)
 target_link_libraries(blas_test
   blas_matrix gtest gtest_main)
 
+# Gtest suite with libxsmm gemm
+add_executable(xsmm_test ${CMAKE_SOURCE_DIR}/Exercise-2/matrix_test.cpp)
+target_link_libraries(xsmm_test
+	xsmm_matrix gtest gtest_main)
+
 # Benchmark of naive gemm
 add_executable(benchmark_naive ${CMAKE_SOURCE_DIR}/Exercise-3/benchmark.c)
-target_link_libraries(benchmark_naive matrix)
-target_link_libraries(benchmark_naive ${MATH})
+target_link_libraries(benchmark_naive ${MATH} matrix)
 
 # Benchmark of blas gemm
 add_executable(benchmark_blas ${CMAKE_SOURCE_DIR}/Exercise-3/benchmark.c)
-target_link_libraries(benchmark_blas ${MATH})
-target_link_libraries(benchmark_blas
-  blas_matrix)
+target_link_libraries(benchmark_blas ${MATH} blas_matrix)
 
-set_target_properties(matrix blas_matrix matrix_test blas_test benchmark_naive benchmark_blas
+# Benchmark of libxsmm
+add_executable(benchmark_xsmm ${CMAKE_SOURCE_DIR}/Exercise-3/benchmark.c)
+target_link_libraries(benchmark_xsmm ${MATH} xsmm_matrix)
+
+set_target_properties(
+	matrix blas_matrix xsmm_matrix 
+	matrix_test blas_test xsmm_test 
+	benchmark_naive benchmark_blas benchmark_xsmm
   PROPERTIES
   ARCHIVE_OUTPUT_DIRECTORY "lib/"
   LIBRARY_OUTPUT_DIRECTORY "lib/"

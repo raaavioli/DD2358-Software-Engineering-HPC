@@ -1,4 +1,4 @@
-#CMAKE
+# CMAKE
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
@@ -11,9 +11,10 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 
+# General
 *.tar.gz
-
 *.o
 *.out
 *.swp
+*.pdf
 build/

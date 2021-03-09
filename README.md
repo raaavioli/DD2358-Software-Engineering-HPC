@@ -9,8 +9,9 @@ Source files are located in *Exercise-2/* respectively *Exercise-3/*. matrix.h i
 The build system assumes you have an implementation of BLAS installed on your system, which you need to provide information about to cmake. For example, install and compile [OpenBLAS](http://www.openblas.net/), and make sure to put *cblas.h* and *openblas_config.h* in the same directory.
 
 #### cmake arguments
-* **BLAS_LIB**: path to a BLAS library implementation file, such as libopenblas.a (including file name)
-* **CBLAS_H**: path to directory containing cblas.h and its required includes (i.e openblas_config.h for openblas)
+* **BLAS_LIB** (required): path to a BLAS library implementation file, such as libopenblas.a (including file name)
+* **CBLAS_H** (required): path to directory containing cblas.h and its required includes (i.e openblas_config.h for openblas)
+* **LIBXSMM_ENABLED**: Compile and link binaries for libxsmm, **required for bonus assignment**
 * **BUILD_GMOCK**: turn gmock build *OFF*, as it is not used.
 
 ### Build instruction
@@ -20,11 +21,11 @@ Following will build LIBXSMM and link all necessary libraries and produce binari
 >
 > \> cd build
 >
-> \> cmake *<path_to_CMakeLists.txt>* -DBUILD_GMOCK=OFF -DCBLAS_H=<path-to-cblas.h> -DBLAS_LIB=<path-to-blas/lib___.a>
+> \> cmake *<path_to_CMakeLists.txt>* -DBUILD_GMOCK=OFF -DLIBXSMM_ENABLED=TRUE -DCBLAS_H=<path-to-cblas.h> -DBLAS_LIB=<path-to-blas/lib___.a>
 >
 > > Example:
 > >
-> > \> cmake .. -DBUILD_GMOCK=OFF -DCBLAS_H=/usr/include/OpenBLAS/ \ 
+> > \> cmake .. -DBUILD_GMOCK=OFF -DLIBXSMM_ENABLED=TRUE -DCBLAS_H=/usr/include/OpenBLAS/ \ 
 > >
 > > \>          -DBLAS_LIB=/usr/lib/OpenBLAS/libopenblas.a
 >

@@ -4,3 +4,6 @@
 [submodule "OpenBLAS"]
 	path = OpenBLAS
 	url = https://github.com/xianyi/OpenBLAS
+[submodule "Exercise-Bonus/libxsmm"]
+	path = Exercise-Bonus/libxsmm
+	url = https://github.com/hfp/libxsmm.git
